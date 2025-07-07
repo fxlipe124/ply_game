@@ -19,10 +19,10 @@ Este projeto implementa um interpretador de cenários 2D utilizando Python, com 
   - `Pillow`: Para geração de imagens PNG.
   - `pygame`: Para visualização gráfica.
 - Instale as dependências com:
-  ```bash
-  pip install ply Pillow pygame
+pip install ply Pillow pygame
 
-Estrutura do Projetovenv/: Ambiente virtual do projeto.
+Estrutura do Projeto
+venv/: Ambiente virtual do projeto.
 main.py: Código principal que coordena a execução do interpretador.
 lexer.py: Módulo responsável pela análise léxica.
 parser.py: Módulo responsável pela análise sintática e construção da AST.
@@ -31,23 +31,24 @@ render.py: Módulo para geração de imagens PNG e visualização com Pygame.
 parser_out/: Diretório para saídas geradas (e.g., cenario_X.json, cenario_X.png).
 README.md: Este arquivo, com instruções e documentação.
 
-Como UsarClone o Repositório:bash
-
-git clone https://github.com/seu_usuario/interpretador-cenarios.git
+Como Usar
+Clone o Repositório:
+git clone https://github.com/fxlipe124/interpretador-cenarios.git
 cd interpretador-cenarios
 
 Configure o Ambiente: Instale as dependências listadas acima.
-Execute o Programa:bash
-
+Execute o Programa:
 python main.py
 
 O programa processa uma entrada de exemplo embutida (ou você pode fornecer um arquivo de entrada).
-Interaja com o Menu: Após o parsing, o programa exibe um menu para cada cenário:1: Gerar imagem PNG.
+Interaja com o Menu: Após o parsing, o programa exibe um menu para cada cenário: 
+1: Gerar imagem PNG.
 2: Gerar arquivo JSON.
 3: Visualizar no Pygame.
 4: Sair.
 
-Formato da EntradaA entrada é um texto que descreve cenários com mapas e objetos. Exemplo:
+Formato da Entrada 
+A entrada é um texto que descreve cenários com mapas e objetos. Exemplo:
 
 cenario cenario_floresta {
   mapa {
@@ -71,44 +72,39 @@ cenario cenario_floresta {
   }
 }
 
-Regras da GramáticaCenário: Definido por cenario ID { mapa objetos }.
+Regras da Gramática
+Cenário: Definido por cenario ID { mapa objetos }.
 Mapa: Contém dimensao = (NUMBER, NUMBER); e tipo_terreno = (grama | areia | agua);.
 Objetos: Lista de objeto ID { tipo = (arvore | pedra | jogador); posicao = (NUMBER, NUMBER); dimensao = (NUMBER, NUMBER); }.
-Validações:Dimensões positivas e ≤ 10.000.
+Validações: Dimensões positivas e ≤ 10.000.
 Tipos de terreno: grama, areia, agua.
 Tipos de objeto: arvore, pedra, jogador.
 Sem sobreposição de objetos.
 Nomes de objetos únicos por cenário.
 
-Componentes do CódigoAnálise Léxica (lexer.py):Define tokens e literais para processar a entrada textual.
+Componentes do Código
+Análise Léxica (lexer.py): Define tokens e literais para processar a entrada textual.
 Tokens: CENARIO, MAPA, OBJETO, DIMENSAO, TIPO_TERRENO, TIPO, POSICAO, ID, STRING, NUMBER.
 Literais: {, }, (, ), =, ,, ;.
 Ignora comentários (//), espaços e tabulações.
 
-Análise Sintática (parser.py):Converte tokens em uma árvore sintática (AST).
+Análise Sintática (parser.py): Converte tokens em uma árvore sintática (AST).
 Exemplo de regra: scenario : CENARIO ID '{' mapa objetos '}'.
 
-Validações Semânticas (utils.py):Limites do Mapa: Verifica se objetos estão dentro das dimensões definidas.
+Validações Semânticas (utils.py): Limites do Mapa: Verifica se objetos estão dentro das dimensões definidas.
 Sobreposição de Objetos: Verifica colisões entre retângulos com complexidade O(n²/2).
 
-Saídas (render.py):PNG: Usa PIL para criar imagens com terreno de fundo e objetos como retângulos coloridos.
+Saídas (render.py): 
+PNG: Usa PIL para criar imagens com terreno de fundo e objetos como retângulos coloridos.
 JSON: Salva a estrutura do cenário em um arquivo com indentação.
 Pygame: Exibe o cenário em uma janela gráfica interativa.
 
-LimitaçõesComplexidade da Verificação de Sobreposição: O(n²/2) para comparação par a par de objetos.
-Escalabilidade: Mapas muito grandes (>10.000 pixels) ou com muitos objetos podem ser lentos.
-Extensibilidade: Adicionar novos tipos de terreno ou objeto requer atualizar dicionários de validação e cores.
-
-Possíveis MelhoriasOtimizar a verificação de sobreposição com estruturas espaciais (e.g., quadtrees).
-Suportar entrada de arquivos externos.
-Adicionar mais tipos de terreno e objetos.
-Implementar animações ou interatividade no Pygame.
-
-ContribuiçãoFaça um fork do repositório.
+Contribuição
+Faça um fork do repositório.
 Crie uma branch para sua feature: git checkout -b feature/nova-funcionalidade.
 Commit suas mudanças: git commit -m 'Adiciona nova funcionalidade'.
 Push para a branch: git push origin feature/nova-funcionalidade.
 Abra um Pull Request.
 
-LicençaEste projeto está licenciado sob a MIT License.
+Licença Este projeto está licenciado sob a MIT License.
 ```

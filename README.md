@@ -37,7 +37,7 @@ Este projeto implementa um interpretador de cenários 2D utilizando Python, PLY 
 
 1. **Clone o Repositório**:
    ```bash
-   git clone https://github.com/seu_usuario/interpretador-cenarios.git
+   git clone https://github.com/fxlipe124/interpretador-cenarios.git
    cd interpretador-cenarios
    ```
 
